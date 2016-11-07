@@ -5,6 +5,7 @@
 #include <fstream>
 #include <vector>
 #include <ctype.h>
+#include <regex>
 #include <Node.class.h>
 
 using namespace std;
