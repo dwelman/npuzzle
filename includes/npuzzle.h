@@ -5,6 +5,7 @@
 #include <fstream>
 #include <vector>
 #include <ctype.h>
+#include <cmath>
 #include <regex>
 #include <Node.class.h>
 
@@ -23,3 +24,5 @@ static Heuristic	usedHeuristic;
 vector<string>	readFile(string fileName);
 
 Node			*makeInitialNode(vector<string> fileContents);
+
+Node			*makeFinalNode(Node *initialNode);
