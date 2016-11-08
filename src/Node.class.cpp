@@ -26,7 +26,7 @@ void Node::printNode()
 		{
 			cout << this->tiles[y][x];
 			if (x < size -1)
-				cout << " ";
+				cout << "\t";
 			x++;
 		}
 		cout << endl;		

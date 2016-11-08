@@ -37,7 +37,6 @@ Node	*makeFinalNode(Node *initialNode)
 			{
 				if (currentNum <= highestNum)
 				{
-					cout << currentNum << endl;
 					grid[y][x] = currentNum;
 					currentNum++;
 				}
@@ -114,16 +113,5 @@ Node	*makeFinalNode(Node *initialNode)
 		if (y < 0)
 			y++;
 	}
-	y = 0;
-	while (y < size)
-	{
-		x = 0;
-		while (x < size)
-		{
-			cout << grid[y][x] << "\t";
-			x++;
-		}
-		cout << endl;
-		y++;
-	}
+	return (new Node(grid, size, 0));
 }
