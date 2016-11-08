@@ -1,15 +1,13 @@
 #include <npuzzle.h>
 
-Node	*makeFinalNode(Node *initialNode)
+Node	*makeFinalNode(int size)
 {
-	int	size;
 	int	highestNum;
 	int	currentNum;
 	int	x;
 	int	y;
 	int	**grid;
-
-	size = initialNode->getSize();
+	
 	highestNum = pow(size, 2) - 1;
 	currentNum = 1;
 	x = 0;

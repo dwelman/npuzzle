@@ -25,4 +25,4 @@ vector<string>	readFile(string fileName);
 
 Node			*makeInitialNode(vector<string> fileContents);
 
-Node			*makeFinalNode(Node *initialNode);
+Node			*makeFinalNode(int size);

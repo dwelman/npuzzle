@@ -12,8 +12,6 @@ int	main(int argc, char **argv)
 		initialState = makeInitialNode(fileContents);
 		initialState->printNode();
 		cout << "--------------" << endl;
-		finalState = makeFinalNode(initialState);
-		finalState->printNode();
 	}
 	else
 	{
