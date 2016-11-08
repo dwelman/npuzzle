@@ -10,6 +10,7 @@ int	main(int argc, char **argv)
 	{
 		fileContents = readFile(argv[1]);
 		initialState = makeInitialNode(fileContents);
+		initialState->printNode();
 	}
 	else
 	{

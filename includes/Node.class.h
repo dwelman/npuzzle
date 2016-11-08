@@ -1,5 +1,8 @@
 #pragma once
 
+#include <iostream>
+using namespace std;
+
 class Node
 {
 	public:
@@ -15,6 +18,7 @@ class Node
 		int		getDepth(){ return (this->depth); }
 		int		getCostToGoal(){ return (this->costToGoal); }
 
+		void	printNode();
 
 	private:
 		int			**tiles;

@@ -11,6 +11,8 @@ vector<string> removeComments(vector<string> fileContents)
 	while (line < fileContents.size())
 	{
 		fileContents[line] = regex_replace(fileContents[line], regex("[' \t']{2,}"), " ");
+		while (fileContents[line][0] == ' ')
+			fileContents[line].erase(0, 1);
 		index = fileContents[line].find('#');
 		if (index != -1)
 		{
@@ -27,7 +29,6 @@ vector<string> removeComments(vector<string> fileContents)
 		}
 		else 
 			returnContents.push_back(fileContents[line]);
-			//cout << "line :" << fileContents[line] << endl;
 		line++;
 	}
 	return (returnContents);
@@ -53,20 +54,64 @@ int		countNumbers(string line)
 	return (count);
 }
 
+void	printNode(int **grid, int size)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (y < size)
+	{
+		x = 0;
+		while (x < size)
+		{
+			cout << grid[y][x];
+			if (x < size - 1)
+				cout << " ";
+			x++;
+		}
+		cout << endl;		
+		y++;
+	}
+}
+
 Node	*makeInitialNode(vector<string> fileContents)
 {
 	Node 	*returnNode;
 	int		**arr;
 	int		x;
 	int		y;
+	int		line;	
+	int		size;
 
 	x = 0;
 	y = 0;
 	fileContents = removeComments(fileContents);
-	while (y < fileContents.size())
+	size = stoi(fileContents[0]);
+	fileContents.erase(fileContents.begin());
+	arr = (int**)malloc(sizeof(int*) * size);
+	while (y < fileContents.size() && y < size)
 	{
-	//	cout << "count" << countNumbers(fileContents[y]) << endl;
-	//	arr[y] = malloc(sizeof(int) * countNumbers(fileContents[y]);
+		x = 0;
+		if (countNumbers(fileContents[y]) != size)
+		{
+			cerr << "INPUT FILE ERROR : size not equal to specified value";
+			exit(-1);
+		}
+
+		arr[y] = (int*)malloc(sizeof(int) * size);
+		line = 0;
+		do
+		{
+			arr[y][x++] = stoi(fileContents[y]);
+			while (isdigit(fileContents[y][line]))
+				line++;
+			fileContents[y] = fileContents[y].substr(line + 1);
+		}
+		while (fileContents[y].find(' ') != -1 && x < size - 1);
+		arr[y][x] = stoi(fileContents[y]);
 		y++;
 	}
+	return (new Node(arr, size, 0));
 }
