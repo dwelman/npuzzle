@@ -1,13 +1,13 @@
 #include <npuzzle.h>
 
-Node	*makeFinalNode(int size)
+Node	*makeFinalNode(int size, Heuristic h)
 {
 	int	highestNum;
 	int	currentNum;
 	int	x;
 	int	y;
 	int	**grid;
-	
+
 	highestNum = pow(size, 2) - 1;
 	currentNum = 1;
 	x = 0;
@@ -111,5 +111,5 @@ Node	*makeFinalNode(int size)
 		if (y < 0)
 			y++;
 	}
-	return (new Node(grid, size, 0));
+	return (new Node(grid, size, 0, h));
 }

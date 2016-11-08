@@ -35,6 +35,8 @@ class Node
 		Node*	slideTile(int);	
 		Node*	nodeCopy();
 
+		bool	compareGrids(int **a, int **b, int size);
+
 
 	private:
 		int			**tiles;

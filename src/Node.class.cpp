@@ -175,3 +175,22 @@ Node	*Node::slideTile(int tile)
 	returnNode->setTile(tileY, tileX, 0);
 	return (returnNode);
 }
+
+bool	Node::compareGrids(int **a, int **b, int size)
+{
+	int		x;
+	int		y;
+
+	while (y < size)
+	{
+		x = 0;
+		while (x < size)
+		{
+			if (a[y][x] != b[y][x])
+				return (false);
+			x++;
+		}
+		y++;
+	}
+	return (true);
+}
