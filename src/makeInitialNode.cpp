@@ -29,6 +29,7 @@ vector<string> removeComments(vector<string> fileContents)
 		}
 		else 
 			returnContents.push_back(fileContents[line]);
+		//cout << fileContents[line] << endl;
 		line++;
 	}
 	return (returnContents);
@@ -54,28 +55,6 @@ int		countNumbers(string line)
 	return (count);
 }
 
-void	printNode(int **grid, int size)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (y < size)
-	{
-		x = 0;
-		while (x < size)
-		{
-			cout << grid[y][x];
-			if (x < size - 1)
-				cout << " ";
-			x++;
-		}
-		cout << endl;		
-		y++;
-	}
-}
-
 Node	*makeInitialNode(vector<string> fileContents)
 {
 	Node 	*returnNode;
@@ -99,15 +78,18 @@ Node	*makeInitialNode(vector<string> fileContents)
 			cerr << "INPUT FILE ERROR : size not equal to specified value";
 			exit(-1);
 		}
-
 		arr[y] = (int*)malloc(sizeof(int) * size);
-		line = 0;
 		do
 		{
+		//	cout << "file bef " << fileContents[y] << endl;			
 			arr[y][x++] = stoi(fileContents[y]);
+		//	cout << "val = " << arr[y][x - 1] << endl;
+			line = 0;
 			while (isdigit(fileContents[y][line]))
 				line++;
+		//		cout << "line " << line << endl;
 			fileContents[y] = fileContents[y].substr(line + 1);
+		//	cout << "file " << fileContents[y] << endl;
 		}
 		while (fileContents[y].find(' ') != -1 && x < size - 1);
 		arr[y][x] = stoi(fileContents[y]);
