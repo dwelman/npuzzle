@@ -1,10 +1,11 @@
 #include <Node.class.h>
 
-Node::Node(int **array, int size, int depth)
+Node::Node(int **array, int size, int depth, int heuristic)
 {
 	setTiles(array);
 	setSize(size);
 	setDepth(depth);
+	setHeuristic(heuristic);
 }
 
 void Node::printNode()
@@ -130,7 +131,7 @@ Node* Node::nodeCopy()
 
 	y = 0;
 	if (this->getSize() == 0)
-		return (new Node(NULL, this->size, 0));
+		return (new Node(NULL, this->size, 0, this->heuristic));
 	arr = (int**)malloc(sizeof(int*) * this->size);
 	while (y < this->getSize())
 	{
@@ -138,7 +139,7 @@ Node* Node::nodeCopy()
 		memcpy(arr[y], this->tiles[y], sizeof(int) * size);
 		y++;
 	}
-	newNode = new Node(arr, this->size, 0);
+	newNode = new Node(arr, this->size, 0, this->heuristic);
 	return (newNode);
 }
 
@@ -162,7 +163,7 @@ Node	*Node::slideTile(int tile)
 	
 	tileX = this->getX(tile);
 	tileY = this->getY(tile);
-	returnNode = new Node(NULL, 0, 0);
+	returnNode = new Node(NULL, 0, 0, 0);
 	if (this->getTop(tiles[tileY][tileX]) != 0 && this->getBottom(tiles[tileY][tileX]) != 0
 	&& this->getLeft(tiles[tileY][tileX]) != 0 && this->getLeft(tiles[tileY][tileX]) != 0)
 		return (returnNode);

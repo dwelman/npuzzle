@@ -55,7 +55,7 @@ int		countNumbers(string line)
 	return (count);
 }
 
-Node	*makeInitialNode(vector<string> fileContents)
+Node	*makeInitialNode(vector<string> fileContents, int heuristic)
 {
 	Node 	*returnNode;
 	int		**arr;
@@ -95,5 +95,5 @@ Node	*makeInitialNode(vector<string> fileContents)
 		arr[y][x] = stoi(fileContents[y]);
 		y++;
 	}
-	return (new Node(arr, size, 0));
+	return (new Node(arr, size, 0, heuristic));
 }
