@@ -10,7 +10,11 @@ int	main(int argc, char **argv)
 	{
 		fileContents = readFile(argv[1]);
 		initialState = makeInitialNode(fileContents);
+		cout << "Initial State :" << endl;
 		initialState->printNode();
+		cout << endl;
+		Node	*test = initialState->slideTile(7);
+		test->printNode();
 	}
 	else
 	{

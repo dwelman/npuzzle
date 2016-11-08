@@ -14,6 +14,7 @@ class Node
 		void	setSize(int size){ this->size = size; }
 		void	setDepth(int depth){ this->depth = depth; }
 		void	setCostToGoal(int cost){ this->costToGoal = cost; }
+		void	setTile(int, int , int);
 
 		// Get methods
 		int		**getTiles(){ return (this->tiles); }
@@ -28,8 +29,10 @@ class Node
 		int		getTop(int);
 		int		getBottom(int);
 		int		getLeft(int);
-		int		getRight(int);				
-		
+		int		getRight(int);
+		Node*	slideTile(int);	
+		Node*	nodeCopy();
+
 
 	private:
 		int			**tiles;
