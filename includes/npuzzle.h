@@ -5,6 +5,9 @@
 #include <fstream>
 #include <vector>
 #include <ctype.h>
+#include <ctime>
+#include <sys/time.h>
+#include <chrono>
 #include <cmath>
 #include <regex>
 #include <Node.class.h>
@@ -28,3 +31,5 @@ Node			*makeInitialNode(vector<string> fileContents, int heuristic);
 Node			*makeFinalNode(int size, int h);
 
 void			solveLoop(Node *initialNode, Node *finalNode);
+
+Node			*generateRandomPuzzle(int heuristic);

@@ -3,6 +3,7 @@
 void	printUsage(void)
 {
 	cout << "ERROR: Usage: ./n_puzzle -h [heuristic method] [puzzle file name]" << endl;
+	cout << "If no input file is specified a random map will be generated with a specified size." << endl;	
 	cout << "heuristic method :" << endl;
 	cout << "\t1 : Manhattan" << endl;
 	cout << "\t2 : Euclidian" << endl;
@@ -35,15 +36,22 @@ int	main(int argc, char **argv)
 	Node	*finalState;
 	int		heuristic;
 
-	if (argc == 4)
+	if (argc == 4 || argc == 3)
 	{
 		if (strlen(argv[1]) != 2 || strcmp(argv[1],  "-h") != 0)
 			printUsage();
 		heuristic = atoi(argv[2]); 
 		if (heuristic != MANHATTAN && heuristic != EUCLIDIAN && heuristic != TOOP)
 			printUsage();
-		fileContents = readFile(argv[3]);
-		initialState = makeInitialNode(fileContents, heuristic);
+		if (argc == 3)
+		{
+			initialState = generateRandomPuzzle(heuristic);
+		}
+		else
+		{
+			fileContents = readFile(argv[3]);
+			initialState = makeInitialNode(fileContents, heuristic);
+		}
 		finalState = makeFinalNode(initialState->getSize(), heuristic);
 		initialState->setFinalState(finalState);
 		initialState->printNode();
