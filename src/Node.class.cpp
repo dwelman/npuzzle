@@ -140,6 +140,7 @@ Node* Node::nodeCopy()
 		y++;
 	}
 	newNode = new Node(arr, this->size, 0, this->heuristic);
+	newNode->setFinalState(this->finalState);
 	return (newNode);
 }
 
@@ -173,6 +174,7 @@ Node	*Node::slideTile(int tile)
 	returnNode = this->nodeCopy();
 	returnNode->setTile(zY, zX, returnNode->getTiles()[tileY][tileX]);	
 	returnNode->setTile(tileY, tileX, 0);
+	returnNode->setCost();
 	return (returnNode);
 }
 
@@ -193,35 +195,5 @@ bool	Node::compareGrids(int **a, int **b, int size)
 		y++;
 	}
 	return (true);
-}
-
-void	Node::setCost()
-{
-	switch (this->heuristic)
-	{
-		case Node::EUCLIDIAN :
-			euclidianCost();
-			break ;
-		case Node::TOOP :
-			toopCost();
-			break ;
-		case Node::MANHATTAN :
-			manhattanCost();
-			break ;
-		default :
-		return;
-	}
-}
-
-void	Node::manhattanCost(void)
-{
-}
-
-void	Node::euclidianCost(void)
-{
-}
-
-void	Node::toopCost(void)
-{
 }
 

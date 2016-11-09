@@ -56,5 +56,8 @@ class Node
 		int			costToGoalSet;		
 		int			heuristic;
 		Node		*finalState;
+
+		//Internal functions
+		int			manhattanCostTile(int tile);
 		
 };
