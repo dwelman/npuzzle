@@ -50,7 +50,8 @@ int	main(int argc, char **argv)
 		cout << "--------------------" << endl;
 		cout << "Final State : " << endl;
 		finalState->printNode();
-		cout << "Using heuristic :" << heuristicString(initialState->getHeuristic()) << endl; 
+		cout << "Using heuristic :" << heuristicString(initialState->getHeuristic()) << endl;
+		solveLoop(initialState, finalState);
 	}
 	else
 	{

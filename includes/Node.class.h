@@ -44,7 +44,7 @@ class Node
 		void	manhattanCost(void);
 		void	euclidianCost(void);
 		void	toopCost(void);		
-		bool	compareGrids(int **a, int **b, int size);
+		static bool	compareGrids(int **a, int **b, int size);
 		void	setCost(void);
 
 

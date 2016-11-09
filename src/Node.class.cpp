@@ -183,6 +183,8 @@ bool	Node::compareGrids(int **a, int **b, int size)
 	int		x;
 	int		y;
 
+	x = 0;
+	y = 0;
 	while (y < size)
 	{
 		x = 0;

@@ -26,3 +26,5 @@ vector<string>	readFile(string fileName);
 Node			*makeInitialNode(vector<string> fileContents, int heuristic);
 
 Node			*makeFinalNode(int size, int h);
+
+void			solveLoop(Node *initialNode, Node *finalNode);
