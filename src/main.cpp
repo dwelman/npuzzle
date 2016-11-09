@@ -44,6 +44,9 @@ int	main(int argc, char **argv)
 			printUsage();
 		fileContents = readFile(argv[3]);
 		initialState = makeInitialNode(fileContents, heuristic);
+		finalState = makeFinalNode(initialState->getSize(), heuristic);
+		initialState->setFinalState(finalState);
+		initialState->setCost();
 		initialState->printNode();
 		cout << "--------------" << endl;		
 		cout << "Using heuristic :" << heuristicString(initialState->getHeuristic()) << endl; 

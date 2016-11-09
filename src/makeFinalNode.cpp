@@ -1,6 +1,6 @@
 #include <npuzzle.h>
 
-Node	*makeFinalNode(int size, Heuristic h)
+Node	*makeFinalNode(int size, int h)
 {
 	int	highestNum;
 	int	currentNum;

@@ -194,3 +194,34 @@ bool	Node::compareGrids(int **a, int **b, int size)
 	}
 	return (true);
 }
+
+void	Node::setCost()
+{
+	switch (this->heuristic)
+	{
+		case Node::EUCLIDIAN :
+			euclidianCost();
+			break ;
+		case Node::TOOP :
+			toopCost();
+			break ;
+		case Node::MANHATTAN :
+			manhattanCost();
+			break ;
+		default :
+		return;
+	}
+}
+
+void	Node::manhattanCost(void)
+{
+}
+
+void	Node::euclidianCost(void)
+{
+}
+
+void	Node::toopCost(void)
+{
+}
+
