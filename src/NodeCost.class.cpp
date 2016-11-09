@@ -1,4 +1,5 @@
 #include <Node.class.h>
+#include <cmath>
 
 void	Node::setCost()
 {
@@ -56,7 +57,18 @@ void	Node::manhattanCost(void)
         }
         y++;
     }
-    cout << "----------------------------" << endl << "Total Cost :" << totalCost << endl;
+    this->setCostToGoal(totalCost);
+    cout << "----------------------------" << endl << "Total Cost :" << getCostToGoal() << endl;
+}
+
+int     Node::euclidianCostTile(int tile)
+{
+    int deltaX;
+    int deltaY;
+
+    deltaX = this->finalState->getX(tile) - this->getX(tile);
+    deltaY = this->finalState->getY(tile) - this->getY(tile);
+    return (sqrt((deltaX * deltaX) + (deltaY * deltaY)));
 }
 
 void	Node::euclidianCost(void)
@@ -79,16 +91,39 @@ void	Node::euclidianCost(void)
                 x++;
                 continue ;
             }
-            cost = manhattanCostTile(this->tiles[y][x]);
+            cost = euclidianCostTile(this->tiles[y][x]);
             totalCost += cost;
             x++;
         }
         y++;
     }
-    setCostToGoal(totalCost);
-    cout << "----------------------------" << endl << "Total Cost :" << totalCost << endl;
+    this->setCostToGoal(totalCost);
+    cout << "----------------------------" << endl << "Total Cost :" << getCostToGoal() << endl;
 }
 
 void	Node::toopCost(void)
 {
+	int		x;
+	int		y;
+    int     **finalS;
+    int     cost;
+
+	x = 0;
+	y = 0;
+    cost = 0;
+    finalS = this->finalState->getTiles();
+	while (y < this->size)
+	{
+		x = 0;
+		while (x < this->size)
+		{
+			if (this->tiles[y][x] != finalS[y][x] 
+                && this->tiles[y][x] != 0)
+                cost++;
+			x++;
+		}
+		y++;
+	}
+    this->setCostToGoal(cost);
+    cout << "----------------------------" << endl << "Total Cost :" << this->getCostToGoal() << endl;    
 }

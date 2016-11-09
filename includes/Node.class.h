@@ -59,5 +59,6 @@ class Node
 
 		//Internal functions
 		int			manhattanCostTile(int tile);
+		int			euclidianCostTile(int tile);
 		
 };
