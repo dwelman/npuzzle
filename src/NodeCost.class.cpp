@@ -58,7 +58,6 @@ void	Node::manhattanCost(void)
         y++;
     }
     this->setCostToGoal(totalCost);
-    cout << "----------------------------" << endl << "Total Cost :" << getCostToGoal() << endl;
 }
 
 int     Node::euclidianCostTile(int tile)
@@ -98,7 +97,6 @@ void	Node::euclidianCost(void)
         y++;
     }
     this->setCostToGoal(totalCost);
-    cout << "----------------------------" << endl << "Total Cost :" << getCostToGoal() << endl;
 }
 
 void	Node::toopCost(void)
@@ -125,5 +123,4 @@ void	Node::toopCost(void)
 		y++;
 	}
     this->setCostToGoal(cost);
-    cout << "----------------------------" << endl << "Total Cost :" << this->getCostToGoal() << endl;    
 }

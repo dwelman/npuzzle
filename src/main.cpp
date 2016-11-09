@@ -29,6 +29,45 @@ string	heuristicString(int heuristic)
 	}
 }
 
+void	determineIfSolveable(Node *initialNode)
+{
+	int	*list;
+	int	inversions;
+	int	length;
+	int	k;
+
+	inversions = 0;
+	k = 0;
+	length = pow(initialNode->getSize(), 2) - 1;
+	list = (int *)malloc(sizeof(int) * length);
+	for (int y = 0; y < initialNode->getSize(); y++)
+	{
+		for (int x = 0; x < initialNode->getSize(); x++)
+		{
+			list[k] = initialNode->getTiles()[y][x];
+			k++;
+		}
+	}
+	for (int i = 0; i < length; i++)
+	{
+		for (int j = i + 1; j < length; j++)
+		{
+			if (list[j] > list[i])
+				inversions++;
+		}
+	}
+	free(list);
+	if (inversions % 2 == 1)
+	{
+		cout << "This puzzle cannot be solved!" << endl;
+		exit(0);
+	}
+	else
+	{
+		cout << "This puzzle can be solved" << endl;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	vector<string>	fileContents;
@@ -52,13 +91,9 @@ int	main(int argc, char **argv)
 			fileContents = readFile(argv[3]);
 			initialState = makeInitialNode(fileContents, heuristic);
 		}
+		determineIfSolveable(initialState);
 		finalState = makeFinalNode(initialState->getSize(), heuristic);
 		initialState->setFinalState(finalState);
-		initialState->printNode();
-		cout << "--------------------" << endl;
-		cout << "Final State : " << endl;
-		finalState->printNode();
-		cout << "Using heuristic :" << heuristicString(initialState->getHeuristic()) << endl;
 		solveLoop(initialState, finalState);
 	}
 	else

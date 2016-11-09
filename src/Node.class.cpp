@@ -166,7 +166,7 @@ Node	*Node::slideTile(int tile)
 	tileY = this->getY(tile);
 	returnNode = new Node(NULL, 0, 0, 0);
 	if (this->getTop(tiles[tileY][tileX]) != 0 && this->getBottom(tiles[tileY][tileX]) != 0
-	&& this->getLeft(tiles[tileY][tileX]) != 0 && this->getLeft(tiles[tileY][tileX]) != 0)
+	&& this->getLeft(tiles[tileY][tileX]) != 0 && this->getRight(tiles[tileY][tileX]) != 0)
 		return (returnNode);
 	zY = this->getY(0);
 	zX = this->getX(0);	

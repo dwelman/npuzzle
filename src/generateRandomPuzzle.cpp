@@ -60,11 +60,11 @@ Node    *generateRandomPuzzle(int heuristic)
     int y;
 
     puzzleSize = getPuzzleSize();
-    puzzleMax = puzzleSize * puzzleSize;
+    puzzleMax = (puzzleSize * puzzleSize) - 1;
     puzzle = (int **)malloc(sizeof(int *) * puzzleSize);
     x = 0;
     y = 0;
-    num = 1;
+    num = 0;
 	while (y < puzzleSize && num < puzzleMax)
 	{
 		puzzle[y] = (int *)malloc(sizeof(int) * puzzleSize);
@@ -79,5 +79,6 @@ Node    *generateRandomPuzzle(int heuristic)
     randomPuzzle = new Node(puzzle, puzzleSize, 0, heuristic);
     swaps(1000000, puzzleSize, puzzle);
     randomPuzzle->printNode();
+    cout << "_______________________________________" << endl;
     return (randomPuzzle);
 }
