@@ -166,7 +166,7 @@ void	solveLoop(Node *initialNode, Node *finalNode)
 			finalPath.push_back(temp);
 			temp = temp->getPrevNode();
 		}
-		for (int k = finalPath.size(); k > -1; k--)
+		for (int k = finalPath.size() - 1; k > -1; k--)
 		{
 			if (finalPath[k] != NULL)
 			{
