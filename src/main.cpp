@@ -50,7 +50,6 @@ void	determineIfSolveable(int **tiles, int size)
 			if (tiles[y][x] != 0)
 			{
 				list[k] = tiles[y][x];
-				cout << list[k] << " ";
 				k++;
 			}
 		}
@@ -58,13 +57,11 @@ void	determineIfSolveable(int **tiles, int size)
 	cout << endl;
 	for (int i = 0; i < length; i++)
 	{
-	//	cout << "Checking " << list[i] << endl;
 		for (int j = i + 1; j < length; j++)
 		{
 			if (list[j] < list[i])
 			{
 				inversions++;
-	//			cout << "++ " << list[j] << " < " << list[i] << endl;
 			}
 		}
 	}
@@ -131,6 +128,7 @@ int	main(int argc, char **argv)
 		}
 		Node *copy = initialState->nodeCopy();
 		determineIfSolveable(copy->getTiles(), copy->getSize());
+		delete copy;
 		initialState->printNode();
 		finalState = makeFinalNode(initialState->getSize(), heuristic);
 		initialState->setFinalState(finalState);
