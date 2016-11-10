@@ -21,6 +21,7 @@ class Node
 		void	setTile(int, int , int);
 		void	setHeuristic(int heuristic){ this->heuristic = heuristic; }
 		void	setFinalState(Node *finalState){ this->finalState = finalState; }
+		void	setPrevNode(Node *prevNode){ this->prevNode = prevNode; }
 		
 
 		// Get methods
@@ -30,6 +31,7 @@ class Node
 		int		getCostToGoal(){ return (this->costToGoal); }
 		int		getHeuristic(){ return (this->heuristic); }
 		Node	*getFinalState(){ return (this->finalState); }
+		Node	*getPrevNode(){ return (this->prevNode); }
 
 		//Class functions
 		void	printNode();
@@ -39,7 +41,7 @@ class Node
 		int		getBottom(int);
 		int		getLeft(int);
 		int		getRight(int);
-		Node*	slideTile(int);	
+		Node*	slideTile(int);
 		Node*	nodeCopy(void);
 		void	manhattanCost(void);
 		void	euclidianCost(void);
@@ -56,6 +58,7 @@ class Node
 		int			costToGoalSet;		
 		int			heuristic;
 		Node		*finalState;
+		Node		*prevNode;
 
 		//Internal functions
 		int			manhattanCostTile(int tile);

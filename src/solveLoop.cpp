@@ -46,6 +46,7 @@ int		generateNewSets(Node *currentNode, vector<Node *> *openSet, vector<Node *> 
 		}
 		if (bCanStore)
 		{
+			copiedNode->setPrevNode(currentNode);
 			openSet->push_back(copiedNode);
 			ret++;
 		}
@@ -64,6 +65,7 @@ int		generateNewSets(Node *currentNode, vector<Node *> *openSet, vector<Node *> 
 		}
 		if (bCanStore)
 		{
+			copiedNode->setPrevNode(currentNode);
 			openSet->push_back(copiedNode);
 			ret++;
 		}
@@ -82,6 +84,7 @@ int		generateNewSets(Node *currentNode, vector<Node *> *openSet, vector<Node *> 
 		}
 		if (bCanStore)
 		{
+			copiedNode->setPrevNode(currentNode);
 			openSet->push_back(copiedNode);
 			ret++;
 		}
@@ -100,6 +103,7 @@ int		generateNewSets(Node *currentNode, vector<Node *> *openSet, vector<Node *> 
 		}
 		if (bCanStore)
 		{
+			copiedNode->setPrevNode(currentNode);
 			openSet->push_back(copiedNode);
 			ret++;
 		}
@@ -111,6 +115,8 @@ void	solveLoop(Node *initialNode, Node *finalNode)
 {
 	vector<Node *>	closedSet;
 	vector<Node *>	openSet;
+	vector<Node *>	finalPath;
+	Node			*temp;
 	bool			bIsDone;
 	bool			bIsSolved;
 	int				maxOpenSet;
@@ -153,6 +159,18 @@ void	solveLoop(Node *initialNode, Node *finalNode)
 		cout << "Solved in: " << moves << " moves" << endl;
 		cout << "There were a maximum of " << maxOpenSet << " open sets at one point" << endl;
 		cout << "There were " << currentStates << " sets created in total" << endl;
+		cout << endl << "This is how the puzzle was solved:" << endl << endl;
+		temp = openSet[currentInd];
+		while (temp != NULL)
+		{
+			finalPath.push_back(temp);
+			temp = temp->getPrevNode();
+		}
+		for (int k = finalPath.size(); k > -1; k--)
+		{
+			finalPath[k]->printNode();
+			cout << "-------------------------------------" << endl;
+		}
 	}
 	else
 	{

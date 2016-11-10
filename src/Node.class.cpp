@@ -6,6 +6,7 @@ Node::Node(int **array, int size, int depth, int heuristic)
 	setSize(size);
 	setDepth(depth);
 	setHeuristic(heuristic);
+	setPrevNode(NULL);
 }
 
 void Node::printNode()

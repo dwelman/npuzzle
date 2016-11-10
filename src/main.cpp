@@ -7,7 +7,7 @@ void	printUsage(void)
 	cout << "heuristic method :" << endl;
 	cout << "\t1 : Manhattan" << endl;
 	cout << "\t2 : Euclidian" << endl;
-	cout << "\t3 : TOOP" << endl;
+	cout << "\t3 : Hamming Distance (Tiles out of place)" << endl;
 	exit(1);
 }
 
