@@ -168,8 +168,11 @@ void	solveLoop(Node *initialNode, Node *finalNode)
 		}
 		for (int k = finalPath.size(); k > -1; k--)
 		{
-			finalPath[k]->printNode();
-			cout << "-------------------------------------" << endl;
+			if (finalPath[k] != NULL)
+			{
+				finalPath[k]->printNode();
+				cout << "-------------------------------------" << endl;
+			}
 		}
 	}
 	else

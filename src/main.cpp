@@ -45,7 +45,10 @@ void	determineIfSolveable(int **tiles, int size)
 		for (int x = 0; x < size; x++)
 		{
 			if (tiles[y][x] != 0)
-				list[k++] = tiles[y][x];
+			{
+				list[k] = tiles[y][x];
+				k++;
+			}
 		}
 	}
 	for (int i = 0; i < length; i++)
@@ -92,7 +95,7 @@ int	main(int argc, char **argv)
 			initialState = makeInitialNode(fileContents, heuristic);
 		}
 		Node *copy = initialState->nodeCopy();
-		determineIfSolveable(copy->getTiles(), copy->getSize());
+		//determineIfSolveable(copy->getTiles(), copy->getSize());
 		cout << "Initial" << endl;
 		cout << "InitialNode Main " << initialState->getTiles()[0][0] << endl;
 		initialState->printNode();
