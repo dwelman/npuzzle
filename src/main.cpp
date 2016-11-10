@@ -53,8 +53,6 @@ void	determineIfSolveable(int **tiles, int size)
 				cout << list[k] << " ";
 				k++;
 			}
-			else
-				blankRow = y + 1;
 		}
 	}
 	cout << endl;
@@ -70,6 +68,16 @@ void	determineIfSolveable(int **tiles, int size)
 			}
 		}
 	}
+	int rowBtm = 1;
+	for (int y = size - 1 ; y >= 0 ; y--)
+	{
+		for (int x = size - 1; x >= 0; x--)
+		{
+			if (tiles[y][x] == 0)
+				blankRow = rowBtm;
+		}
+		rowBtm++;
+	}
 
 	free(list);
 
@@ -84,7 +92,7 @@ void	determineIfSolveable(int **tiles, int size)
 
 	//If the grid width is even, and the blank is on an odd row counting from the bottom 
 	//(last, third-last, fifth-last etc) then the number of inversions in a solvable situation is even.
-	if (size % 2 == 0 && blankRow % 2 == 1 && inversions % 2 == 1)
+	if (size % 2 == 0 && blankRow % 2 == 1 && inversions % 2 == 0)
 		solvable = true;
 
 	if (!solvable)
