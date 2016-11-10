@@ -31,11 +31,14 @@ string	heuristicString(int heuristic)
 
 void	determineIfSolveable(int **tiles, int size)
 {
-	int	*list;
-	int	inversions;
-	int	length;
-	int	k;
+	int		*list;
+	int		inversions;
+	int		length;
+	int		k;
+	int		blankRow;
+	bool	solvable;
 
+	solvable = false;
 	inversions = 0;
 	k = 0;
 	length = pow(size, 2) - 1;
@@ -47,20 +50,44 @@ void	determineIfSolveable(int **tiles, int size)
 			if (tiles[y][x] != 0)
 			{
 				list[k] = tiles[y][x];
+				cout << list[k] << " ";
 				k++;
+			}
+			else
+				blankRow = y + 1;
+		}
+	}
+	cout << endl;
+	for (int i = 0; i < length; i++)
+	{
+	//	cout << "Checking " << list[i] << endl;
+		for (int j = i + 1; j < length; j++)
+		{
+			if (list[j] < list[i])
+			{
+				inversions++;
+	//			cout << "++ " << list[j] << " < " << list[i] << endl;
 			}
 		}
 	}
-	for (int i = 0; i < length; i++)
-	{
-		for (int j = i + 1; j < length; j++)
-		{
-			if (list[j] > list[i])
-				inversions++;
-		}
-	}
+
 	free(list);
-	if (inversions % 2 == 1)
+
+	//If the grid width is odd, then the number of inversions in a solvable situation is even.
+	if (size % 2 == 1 && inversions % 2 == 1)
+		solvable = true;
+
+	//If the grid width is even, and the blank is on an even row counting from the bottom 
+	//(second-last, fourth-last etc), then the number of inversions in a solvable situation is odd.
+	if (size % 2 == 0 && blankRow % 2 == 0 && inversions % 2 == 1)
+		solvable = true;
+
+	//If the grid width is even, and the blank is on an odd row counting from the bottom 
+	//(last, third-last, fifth-last etc) then the number of inversions in a solvable situation is even.
+	if (size % 2 == 0 && blankRow % 2 == 1 && inversions % 2 == 1)
+		solvable = true;
+
+	if (!solvable)
 	{
 		cout << "This puzzle cannot be solved!" << endl;
 		exit(0);
@@ -95,11 +122,8 @@ int	main(int argc, char **argv)
 			initialState = makeInitialNode(fileContents, heuristic);
 		}
 		Node *copy = initialState->nodeCopy();
-		//determineIfSolveable(copy->getTiles(), copy->getSize());
-		cout << "Initial" << endl;
-		cout << "InitialNode Main " << initialState->getTiles()[0][0] << endl;
+		determineIfSolveable(copy->getTiles(), copy->getSize());
 		initialState->printNode();
-		//exit(1);
 		finalState = makeFinalNode(initialState->getSize(), heuristic);
 		initialState->setFinalState(finalState);
 		solveLoop(initialState, finalState);
