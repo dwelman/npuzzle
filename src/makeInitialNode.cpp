@@ -29,7 +29,7 @@ vector<string> removeComments(vector<string> fileContents)
 		}
 		else 
 			returnContents.push_back(fileContents[line]);
-		//cout << fileContents[line] << endl;
+		cout << fileContents[line] << endl;
 		line++;
 	}
 	return (returnContents);

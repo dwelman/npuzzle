@@ -136,8 +136,8 @@ Node* Node::nodeCopy()
 	arr = (int**)malloc(sizeof(int*) * this->size);
 	while (y < this->getSize())
 	{
-		arr[y] = (int*)malloc(sizeof(int) * size);
-		memcpy(arr[y], this->tiles[y], sizeof(int) * size);
+		arr[y] = (int*)malloc(sizeof(int) * this->size);
+		memcpy(arr[y], this->tiles[y], sizeof(int) * this->size);
 		y++;
 	}
 	newNode = new Node(arr, this->size, 0, this->heuristic);
@@ -152,7 +152,7 @@ void	Node::setTile(int y, int x, int val)
 		cerr << "Tile out of bounds" << endl;
 		return ;
 	}
-	this->tiles[y][x] = val;	
+	this->tiles[y][x] = val;
 }
 
 Node	*Node::slideTile(int tile)

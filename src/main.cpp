@@ -29,7 +29,7 @@ string	heuristicString(int heuristic)
 	}
 }
 
-void	determineIfSolveable(Node *initialNode)
+void	determineIfSolveable(int **tiles, int size)
 {
 	int	*list;
 	int	inversions;
@@ -38,14 +38,14 @@ void	determineIfSolveable(Node *initialNode)
 
 	inversions = 0;
 	k = 0;
-	length = pow(initialNode->getSize(), 2) - 1;
+	length = pow(size, 2) - 1;
 	list = (int *)malloc(sizeof(int) * length);
-	for (int y = 0; y < initialNode->getSize(); y++)
+	for (int y = 0; y < size; y++)
 	{
-		for (int x = 0; x < initialNode->getSize(); x++)
+		for (int x = 0; x < size; x++)
 		{
-			list[k] = initialNode->getTiles()[y][x];
-			k++;
+			if (tiles[y][x] != 0)
+				list[k++] = tiles[y][x];
 		}
 	}
 	for (int i = 0; i < length; i++)
@@ -91,7 +91,12 @@ int	main(int argc, char **argv)
 			fileContents = readFile(argv[3]);
 			initialState = makeInitialNode(fileContents, heuristic);
 		}
-		determineIfSolveable(initialState);
+		Node *copy = initialState->nodeCopy();
+		determineIfSolveable(copy->getTiles(), copy->getSize());
+		cout << "Initial" << endl;
+		cout << "InitialNode Main " << initialState->getTiles()[0][0] << endl;
+		initialState->printNode();
+		//exit(1);
 		finalState = makeFinalNode(initialState->getSize(), heuristic);
 		initialState->setFinalState(finalState);
 		solveLoop(initialState, finalState);
